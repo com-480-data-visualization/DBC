@@ -77,7 +77,7 @@ The five CSV files were loaded and unified into a single dataframe of **782 coun
 
 The World Happiness Report dataset is widely used in data science education and has been explored extensively on Kaggle, where dozens of notebooks present static bar charts of country rankings, scatter plots of GDP vs. happiness, and basic correlation heatmaps. The official WHR website ([worldhappiness.report](https://worldhappiness.report)) publishes its own visualisations, primarily static choropleth maps and ranking tables. Journalistic outlets such as *Our World in Data* have also covered the topic with clean, interactive time-series charts focused on individual countries or broad regional trends.
 
-However, most existing treatments share a common limitation: they present the data either as a **snapshot** (one year, one ranking) or as a **single-variable explorer** (one factor vs. one score). None combine the three dimensions of *where*, *what*, and *when* into a unified narrative experience aimed at a general audience.
+However, most existing treatments share a common limitation: they present the data either as a **snapshot** (one year, one ranking) or as a **single-variable explorer** (one factor vs. one score). None combine the 3 dimensions of *where*, *what*, and *when* into a unified narrative experience aimed at a general audience.
 
 Our approach is original in three ways:
 
