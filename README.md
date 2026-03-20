@@ -71,6 +71,8 @@ The five CSV files were loaded and unified into a single dataframe of **782 coun
 
 **Temporal changes:** Venezuela experienced the sharpest decline (−2.10 points), while Benin showed the most notable improvement (+1.54 points) between 2015 and 2019. In total, **141 countries** appear consistently across all five years, enabling reliable longitudinal comparisons.
 
+Notebook with full EDA: [eda_happiness.ipynb](eda_happiness.ipynb)
+
 ---
 
 ## Related Work
