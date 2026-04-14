@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Happiness Report — A Visual Exploration</title>
+  <link rel="stylesheet" href="website/css/style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://d3js.org/topojson.v3.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <header id="hero">
+    <div class="hero-content">
+      <h1>World Happiness Report</h1>
+      <p class="subtitle">A visual journey through what makes nations happy — 2015 to 2019</p>
+      <div class="scroll-hint">Scroll to explore &darr;</div>
+    </div>
+  </header>
+
+  <!-- ===== NAV ===== -->
+  <nav id="sticky-nav">
+    <a href="#section-where" class="nav-link active" data-section="where">Where</a>
+    <a href="#section-what"  class="nav-link" data-section="what">What</a>
+    <a href="#section-when"  class="nav-link" data-section="when">When</a>
+  </nav>
+
+  <!-- ===== SECTION 1: WHERE ===== -->
+  <section id="section-where" class="vis-section">
+    <div class="section-intro">
+      <span class="section-label">Part 1</span>
+      <h2>Where is happiness?</h2>
+      <p>Happiness is not evenly distributed across the globe. Northern Europe consistently leads, while Sub-Saharan Africa faces the steepest challenges. Explore the map to see how scores vary by country and year.</p>
+    </div>
+    <div class="vis-controls">
+      <label for="year-slider">Year:</label>
+      <input type="range" id="year-slider" min="2015" max="2019" value="2019" step="1">
+      <span id="year-label">2019</span>
+    </div>
+    <div id="map-container" class="vis-container"></div>
+    <div id="map-legend" class="legend"></div>
+  </section>
+
+  <!-- ===== SECTION 2: WHAT ===== -->
+  <section id="section-what" class="vis-section">
+    <div class="section-intro">
+      <span class="section-label">Part 2</span>
+      <h2>What drives happiness?</h2>
+      <p>Happiness scores are built from six factors: GDP, social support, health, freedom, generosity, and trust in government. Their relative weight varies dramatically across regions. Select a region to compare.</p>
+    </div>
+    <div class="vis-controls">
+      <label for="region-select">Region:</label>
+      <select id="region-select">
+        <option value="all">All Regions (2019 average)</option>
+      </select>
+    </div>
+    <div id="factor-container" class="vis-container"></div>
+  </section>
+
+  <!-- ===== SECTION 3: WHEN ===== -->
+  <section id="section-when" class="vis-section">
+    <div class="section-intro">
+      <span class="section-label">Part 3</span>
+      <h2>When did things change?</h2>
+      <p>While the global average has barely moved, individual countries have experienced dramatic shifts. Venezuela plunged nearly two points; Benin rose over one and a half. Click countries on the chart to compare their trajectories.</p>
+    </div>
+    <div id="trends-container" class="vis-container"></div>
+    <div id="trends-legend" class="legend"></div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>COM-480 Data Visualization &mdash; World Happiness Report (2015&ndash;2019)</p>
+    <p class="team">Dafer Yassine &middot; Ali El Bouiri &middot; Mohamed Chafai El Alaoui &middot; Dafer Mohamed Amine</p>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="website/js/map.js"></script>
+  <script src="website/js/factors.js"></script>
+  <script src="website/js/trends.js"></script>
+  <script src="website/js/main.js"></script>
+</body>
+</html>
