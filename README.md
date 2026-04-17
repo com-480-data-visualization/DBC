@@ -89,3 +89,6 @@ Our approach is original in three ways:
 3. We explicitly incorporate the **temporal dimension** across all five years, allowing users to observe which countries have gained or lost ground and in what context.
 
 For visual inspiration, we draw on the narrative scrollytelling style of [*The Pudding*](https://pudding.cool), the clean geographic storytelling of [*Our World in Data*](https://ourworldindata.org), and the layered interactivity of Hans Rosling's [Gapminder](https://www.gapminder.org/tools/) tool, which similarly encodes multiple variables (size, colour, position, time) into a single animated view.
+
+### Milestone 2
+* **Functional Prototype:** The website is available **[here](https://com-480-data-visualization.github.io/DBC/)**.
