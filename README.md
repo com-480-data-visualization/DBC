@@ -92,3 +92,74 @@ For visual inspiration, we draw on the narrative scrollytelling style of [*The P
 
 ### Milestone 2
 * **Functional Prototype:** The website is available **[here](https://com-480-data-visualization.github.io/DBC/)**.
+
+---
+
+## Milestone 3
+
+* **Final website:** The website is available **[here](https://com-480-data-visualization.github.io/DBC/)**.
+* **Screencast:** Available **[here](#)** .
+* **Process book:** Available in this repository as `process_book.pdf`.
+
+### Technical setup
+
+The project is a fully client-side web application (no build step, no server required). All data is pre-processed and stored as a single `data/happiness.json` file.
+
+**To run locally:**
+
+Option 1: Python (no install needed):
+```bash
+git clone https://github.com/com-480-data-visualization/DBC.git
+cd DBC
+python3 -m http.server 8000
+# then open http://localhost:8000 in your browser
+```
+
+Option 2: VS Code Live Server extension:
+1. Open the cloned folder in VS Code
+2. Install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension if you don't have it
+3. Right-click `index.html` → **Open with Live Server**
+
+> A local server is required either way; opening `index.html` directly as a `file://` URL will not work because browsers block `fetch()` requests on `file://` origins, which D3 uses to load `happiness.json`.
+
+**Dependencies:**  all loaded from CDN, no installation needed:
+- [D3.js v7](https://d3js.org/)
+- [TopoJSON v3](https://github.com/topojson/topojson), for the world map geometry
+- World Atlas 110m, loaded at runtime from jsDelivr
+
+### Repository structure
+
+```
+DBC/
+├── index.html               # Main entry point
+├── data/
+│   └── happiness.json       # Unified 2015–2019 dataset (782 records)
+├── website/
+│   ├── css/
+│   │   └── style.css        # All styles and CSS variables
+│   └── js/
+│       ├── utils.js         # Shared WHR namespace (constants, helpers)
+│       ├── map.js           # Section 1, choropleth world map
+│       ├── stripplot.js     # Section 1, regional distribution strip plot
+│       ├── factors.js       # Section 2, stacked factor bar chart
+│       ├── radar.js         # Section 2, happiness fingerprint radar chart
+│       ├── bubble.js        # Section 3, Gapminder-style bubble chart
+│       ├── factorScatter.js # Section 3, factor vs happiness dot plot
+│       ├── trends.js        # Section 4, multi-line trajectory chart
+│       ├── raceBar.js       # Section 4, animated bar chart race
+│       └── main.js          # Entry point, data loading & initialisation
+└── process_book.pdf
+```
+
+### Visualisations
+
+The final website is structured as a four-part narrative:
+
+| Part | Question | Charts |
+|------|----------|--------|
+| **Where** | Where is happiness concentrated? | Choropleth map (year slider, country click → detail panel) · Regional strip plot |
+| **What** | What factors drive it? | Stacked bar chart by region/country · Radar fingerprint chart |
+| **Explore** | How do factors relate to happiness? | Gapminder bubble chart (GDP × score, animated) · Factor scatter dot plot (switchable factor, regional swim-lanes) |
+| **When** | When did things change? | Multi-line trend chart (search & highlight) · Animated bar chart race |
+
+All charts share a consistent color scheme (one color per region), a common tooltip style, and are initialised from the same `happiness.json` dataset via the shared `WHR` utility namespace.

@@ -3,52 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Happiness Report, A Visual Exploration</title>
+  <title>World Happiness Report: A Visual Exploration</title>
   <link rel="stylesheet" href="website/css/style.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://d3js.org/topojson.v3.min.js"></script>
 </head>
 <body>
 
-  <!-- ===== HERO ===== -->
   <header id="hero">
     <div class="hero-content">
       <h1>World Happiness Report</h1>
-      <p class="subtitle">A visual journey through what makes nations happy from 2015 to 2019</p>
-      <div class="scroll-hint">Scroll to explore &darr;</div>
+      <p class="subtitle">A visual journey through what makes nations happy, 2015–2019</p>
+      <div class="scroll-hint">Scroll to explore ↓</div>
     </div>
   </header>
 
-  <!-- ===== NAV ===== -->
   <nav id="sticky-nav">
-    <a href="#section-where" class="nav-link active" data-section="where">Where</a>
-    <a href="#section-what"  class="nav-link" data-section="what">What</a>
-    <a href="#section-when"  class="nav-link" data-section="when">When</a>
+    <a href="#section-where"  class="nav-link active" data-section="where">Where</a>
+    <a href="#section-what"   class="nav-link" data-section="what">What</a>
+    <a href="#section-bubble" class="nav-link" data-section="bubble">Explore</a>
+    <a href="#section-when"   class="nav-link" data-section="when">When</a>
   </nav>
 
-  <!-- ===== SECTION 1: WHERE ===== -->
   <section id="section-where" class="vis-section">
     <div class="section-intro">
-      <span class="section-label">Part 1</span>
+      <span class="section-label">Axis 1</span>
       <h2>Where is happiness?</h2>
-      <p>Happiness is not evenly distributed across the globe. Northern Europe consistently leads, while Sub-Saharan Africa faces the steepest challenges. Explore the map to see how scores vary by country and year.</p>
+      <p>Happiness is not evenly distributed across the globe. Northern Europe consistently leads the rankings while Sub-Saharan Africa faces the steepest challenges. Use the year slider to travel through 2015–2019 and watch how the landscape shifts. Click any country on the map to open a detailed breakdown of its score and contributing factors.</p>
     </div>
+    <div class="section-annotation"></div>
     <div class="vis-controls">
       <label for="year-slider">Year:</label>
       <input type="range" id="year-slider" min="2015" max="2019" value="2019" step="1">
       <span id="year-label">2019</span>
     </div>
-    <div id="map-container" class="vis-container"></div>
+    <div style="position:relative">
+      <div id="map-container" class="vis-container"></div>
+      <div id="map-detail-panel" class="detail-panel">
+        <button id="map-detail-close" class="panel-close">✕</button>
+      </div>
+    </div>
     <div id="map-legend" class="legend"></div>
+
+    <div class="companion-block">
+      <div class="companion-intro">
+        <h3>How spread out is happiness within each region?</h3>
+        <p>The choropleth above shows geography, but not distribution. This strip plot places every country as a dot along the happiness score axis, grouped into regional swim-lanes. The thick vertical bar marks each region's average. Notice how tightly clustered Western Europe is at the top, while Sub-Saharan Africa and Latin America show the widest internal spread, meaning high inequality in well-being within those regions. Hover any dot to identify the country.</p>
+      </div>
+      <div id="strip-container" class="vis-container"></div>
+    </div>
   </section>
 
-  <!-- ===== SECTION 2: WHAT ===== -->
   <section id="section-what" class="vis-section">
     <div class="section-intro">
-      <span class="section-label">Part 2</span>
+      <span class="section-label">Axis 2</span>
       <h2>What drives happiness?</h2>
-      <p>Happiness scores are built from six factors: GDP, social support, health, freedom, generosity, and trust in government. Their relative weight varies dramatically across regions. Select a region to compare.</p>
+      <p>The World Happiness Report decomposes each country's score into six measurable factors: GDP per capita, social support, healthy life expectancy, freedom to make life choices, generosity, and perceptions of government corruption. The stacked bar chart below shows how these factors add up, either averaged across all world regions or broken down by individual country within a region. Use the dropdown to zoom in.</p>
     </div>
+    <div class="section-annotation"></div>
     <div class="vis-controls">
       <label for="region-select">Region:</label>
       <select id="region-select">
@@ -56,30 +68,98 @@
       </select>
     </div>
     <div id="factor-container" class="vis-container"></div>
+    <div id="factor-legend" class="factor-legend-wrap"></div>
+
+    <div class="companion-block">
+      <div class="companion-intro">
+        <h3>Each region's happiness fingerprint</h3>
+        <p>The stacked bars show totals well, but they make it hard to compare the <em>shape</em> of a region's happiness. This radar chart solves that. Each axis represents one factor, normalised so the outermost ring is the maximum observed globally. The filled polygon is the selected region; the dashed outline is the global average for reference. Switch regions in the dropdown above to see how profiles shift dramatically: Sub-Saharan Africa scores surprisingly well on generosity despite its low GDP, while Eastern Asia trades social support for economic strength.</p>
+      </div>
+      <div id="radar-container" class="vis-container radar-vis-container"></div>
+    </div>
   </section>
 
-  <!-- ===== SECTION 3: WHEN ===== -->
+  <section id="section-bubble" class="vis-section">
+    <div class="section-intro">
+      <span class="section-label">Axis 3</span>
+      <h2>Explore the data</h2>
+      <p>Beyond rankings, happiness is shaped by measurable factors. This section lets you explore two of the strongest relationships in the dataset interactively. How much does national wealth predict happiness? And does living longer mean living happier? Press Play on either chart to animate the data across 2015–2019 and watch the relationships evolve.</p>
+    </div>
+    <div class="section-annotation"></div>
+
+    <div class="companion-intro" style="margin-bottom:1rem">
+      <h3>Wealth vs happiness</h3>
+      <p>Each bubble is a country. The X axis shows the GDP per capita contribution to the happiness score; the Y axis is the happiness score itself. Bubble size reflects rank; top-ranked countries appear largest. The positive correlation is clear, but notice the outliers: some countries punch well above their economic weight, while others fall short despite their wealth. Click a region in the legend to highlight it; press Play to animate through years.</p>
+    </div>
+    <div class="vis-controls" style="gap:1.25rem">
+      <button id="bubble-play-btn" class="play-btn">▶ Play</button>
+      <label for="bubble-year-slider">Year:</label>
+      <input type="range" id="bubble-year-slider" min="2015" max="2019" value="2019" step="1">
+      <span id="bubble-year-label">2019</span>
+    </div>
+    <div id="bubble-container" class="vis-container"></div>
+    <div id="bubble-legend" class="bubble-legend-wrap"></div>
+
+    <div class="companion-block">
+      <div class="companion-intro">
+        <h3>Health vs happiness: a factor deep-dive</h3>
+        <p>Healthy life expectancy is the second-strongest predictor of happiness after GDP. This chart plots health contribution against happiness score for every country, colored by region. Unlike the wealth chart, the relationship here reveals a sharper threshold effect: below a certain health level, happiness drops steeply. Countries in Sub-Saharan Africa cluster in the bottom-left; Scandinavian countries occupy the top-right. Toggle a factor from the buttons below to explore other relationships. Freedom, social support, and generosity each tell a different story.</p>
+      </div>
+      <div class="vis-controls" style="gap:0.5rem; flex-wrap:wrap" id="factor-scatter-controls"></div>
+      <div class="vis-controls" style="gap:1.25rem; margin-top:0.5rem">
+        <button id="scatter-play-btn" class="play-btn">▶ Play</button>
+        <label for="scatter-year-slider">Year:</label>
+        <input type="range" id="scatter-year-slider" min="2015" max="2019" value="2019" step="1">
+        <span id="scatter-year-label">2019</span>
+      </div>
+      <div id="scatter-container" class="vis-container"></div>
+    </div>
+  </section>
+
   <section id="section-when" class="vis-section">
     <div class="section-intro">
-      <span class="section-label">Part 3</span>
+      <span class="section-label">Axis 4</span>
       <h2>When did things change?</h2>
-      <p>While the global average has barely moved, individual countries have experienced dramatic shifts. Venezuela plunged nearly two points; Benin rose over one and a half. Click countries on the chart to compare their trajectories.</p>
+      <p>From 2015 to 2019, the global average happiness score barely moved, but that stability masks turbulent individual stories. Some countries climbed dramatically; others collapsed. The multi-line chart below traces every country's trajectory across the five years. Pre-highlighted in green are the five biggest improvers; in red, the five steepest declines. Use the search box to add any country and compare it to the rest.</p>
+    </div>
+    <div class="section-annotation"></div>
+    <div class="vis-controls" style="flex-wrap:wrap; gap: 0.5rem 1rem">
+      <input type="text" id="trends-search" list="trends-datalist" placeholder="Search a country…" class="trends-search-input">
+      <datalist id="trends-datalist"></datalist>
+      <div id="trends-chips" class="chips-row"></div>
     </div>
     <div id="trends-container" class="vis-container"></div>
-    <div id="trends-legend" class="legend"></div>
+    <div id="trends-legend" class="legend" style="flex-wrap:wrap"></div>
+
+    <div class="companion-block">
+      <div class="companion-intro">
+        <h3>The race for happiness: who climbed, who fell?</h3>
+        <p>The line chart reveals trajectories, but it can be hard to read rank changes when 140 countries overlap. This animated bar chart race makes it visceral: watch the top 15 countries jostle for position year after year. Countries are colored by region, so you can track not just individual nations but regional patterns. Press Play and watch how the Nordic bloc holds firm while others rise and fall around them. Use the slider to step through years manually.</p>
+      </div>
+      <div class="vis-controls" style="gap:1.25rem">
+        <button id="race-play-btn" class="play-btn">▶ Play</button>
+        <label for="race-year-slider">Year:</label>
+        <input type="range" id="race-year-slider" min="2015" max="2019" value="2019" step="1">
+        <span id="race-year-display">2019</span>
+      </div>
+      <div id="race-container" class="vis-container"></div>
+    </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
-    <p>COM-480 Data Visualization &mdash; World Happiness Report (2015&ndash;2019)</p>
-    <p class="team">Dafer Yassine &middot; Ali El Bouiri &middot; Mohamed Chafai El Alaoui &middot; Dafer Mohamed Amine</p>
+    <p>COM-480 Data Visualization : World Happiness Report (2015–2019)</p>
+    <p class="team">Dafer Yassine · Ali El Bouiri · Mohamed Chafai El Alaoui · Dafer Mohamed Amine</p>
   </footer>
 
-  <!-- ===== SCRIPTS ===== -->
+  <script src="website/js/utils.js"></script>
   <script src="website/js/map.js"></script>
+  <script src="website/js/stripplot.js"></script>
   <script src="website/js/factors.js"></script>
+  <script src="website/js/radar.js"></script>
+  <script src="website/js/bubble.js"></script>
+  <script src="website/js/factorScatter.js"></script>
   <script src="website/js/trends.js"></script>
+  <script src="website/js/raceBar.js"></script>
   <script src="website/js/main.js"></script>
 </body>
 </html>
-
