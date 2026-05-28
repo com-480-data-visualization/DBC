@@ -98,7 +98,7 @@ For visual inspiration, we draw on the narrative scrollytelling style of [*The P
 ## Milestone 3
 
 * **Final website:** The website is available **[here](https://com-480-data-visualization.github.io/DBC/)**.
-* **Screencast:** Available **[here](#)** .
+* **Screencast:** Available **[here](https://drive.google.com/file/d/1r5FsySiXnSr_uB2k7nDi5WYFMpcNewLp/view?usp=sharing)** .
 * **Process book:** Available in this repository as `process_book.pdf`.
 
 ### Technical setup
