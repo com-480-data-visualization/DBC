@@ -125,7 +125,7 @@ Option 2: VS Code Live Server extension:
 **Dependencies:**  all loaded from CDN, no installation needed:
 - [D3.js v7](https://d3js.org/)
 - [TopoJSON v3](https://github.com/topojson/topojson), for the world map geometry
-- World Atlas 110m, loaded at runtime from jsDelivr
+- World Atlas 110m, loaded at runtime from jsDelivr   
 
 ### Repository structure
 
