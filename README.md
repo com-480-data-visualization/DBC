@@ -99,7 +99,7 @@ For visual inspiration, we draw on the narrative scrollytelling style of [*The P
 
 * **Final website:** The website is available **[here](https://com-480-data-visualization.github.io/DBC/)**.
 * **Screencast:** Available **[here](https://drive.google.com/file/d/1r5FsySiXnSr_uB2k7nDi5WYFMpcNewLp/view?usp=sharing)** .
-* **Process book:** Available in this repository as `process_book.pdf`.
+* **Process book:** Available in this repository as `Process_Book_DataViz.pdf`.
 
 ### Technical setup
 
@@ -148,7 +148,7 @@ DBC/
 │       ├── trends.js        # Section 4, multi-line trajectory chart
 │       ├── raceBar.js       # Section 4, animated bar chart race
 │       └── main.js          # Entry point, data loading & initialisation
-└── process_book.pdf
+└── Process_Book_DataViz.pdf
 ```
 
 ### Visualisations
